@@ -1,2 +1,27 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Big mouth billy bass</h1>
+
+<button onclick="ajax('/api/mouth/open')">Open mouth</button>
+<button onclick="ajax('/api/mouth/close')">Close mouth</button>
+<button onclick="ajax('/api/neck/up')">Neck up</button>
+<button onclick="ajax('/api/neck/down')">Neck down</button>
+<button onclick="ajax('/api/tail/up')">Tail up</button>
+<button onclick="ajax('/api/tail/down')">Tail down</button>
+
+<script>
+
+var baseUrl = "http://127.0.0.1:3000";
+
+function ajax(path, callback){
+    var xmlhttp;
+    // compatible with IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+            callback(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET", baseUrl + path, true);
+    xmlhttp.send();
+}
+
+</script>
