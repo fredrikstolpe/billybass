@@ -12,6 +12,8 @@
     "express": "latest",
     "hbs": "latest",
     "joi": "latest",
-    "express-validation" : "latest"
+    "express-validation": "latest",
+    "rpi-gpio": "latest",
+    "q": "latest"
   }
 }
