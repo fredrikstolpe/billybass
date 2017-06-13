@@ -3,6 +3,7 @@ var router = express.Router();
 var validate = require('express-validation');
 var validation = require('../validation/');
 var Pin = require('../modules/pin.js');
+var espeak = require('../modules/espeak.js');
 
 var tailPin = new Pin(19);
 tailPin.setupOutput();
@@ -12,6 +13,23 @@ neckPin.setupOutput();
 
 var mouthPin = new Pin(23);
 mouthPin.setupOutput();
+
+router.get('/say', validate(validation.api.say.get), function(req, res, next) {
+  espeak.say(req.query.phrase)
+  .then(
+    function (result){
+      res.json({
+        success: true,
+        result: req.params.action
+      });
+    },
+    function (err){
+      res.json({
+        success: false
+      });
+    }
+  );
+});
 
 router.get('/neck/:action', validate(validation.api.neck.get), function(req, res, next) {
   neckPin.write(req.params.action == 'up');

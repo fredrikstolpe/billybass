@@ -1,6 +1,13 @@
 var Joi = require('joi');
 
 module.exports = {
+  say: {
+    get: {
+      query: {
+        phrase: Joi.string().required()
+      }
+    }
+  },
   neck: {
     get: {
       params: {
