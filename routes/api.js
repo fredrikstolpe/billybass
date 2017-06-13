@@ -4,14 +4,14 @@ var validate = require('express-validation');
 var validation = require('../validation/');
 var Pin = require('../modules/pin.js');
 
-var neckPin = new Pin(19);
+var tailPin = new Pin(19);
+tailPin.setupOutput();
+
+var neckPin = new Pin(21);
 neckPin.setupOutput();
 
-var mouthPin = new Pin(21);
+var mouthPin = new Pin(23);
 mouthPin.setupOutput();
-
-var tailPin = new Pin(23);
-tailPin.setupOutput();
 
 router.get('/neck/:action', validate(validation.api.neck.get), function(req, res, next) {
   neckPin.write(req.params.action == 'up');
