@@ -9,8 +9,6 @@
 
 <script>
 
-var baseUrl = "http://127.0.0.1:3000";
-
 function ajax(path, callback){
     var xmlhttp;
     // compatible with IE7+, Firefox, Chrome, Opera, Safari
@@ -20,7 +18,7 @@ function ajax(path, callback){
             callback(xmlhttp.responseText);
         }
     }
-    xmlhttp.open("GET", baseUrl + path, true);
+    xmlhttp.open("GET", path, true);
     xmlhttp.send();
 }
 
