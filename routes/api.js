@@ -3,7 +3,7 @@ var router = express.Router();
 var validate = require('express-validation');
 var validation = require('../validation/');
 var Pin = require('../modules/pin.js');
-var espeak = require('../modules/espeak.js');
+var flitetts = require('../modules/flitetts.js');
 
 var tailPin = new Pin(19);
 tailPin.setupOutput();
@@ -15,7 +15,7 @@ var mouthPin = new Pin(23);
 mouthPin.setupOutput();
 
 router.get('/say', validate(validation.api.say.get), function(req, res, next) {
-  espeak.say(req.query.phrase)
+  flitetts.say(req.query.phrase)
   .then(
     function (result){
       res.json({
