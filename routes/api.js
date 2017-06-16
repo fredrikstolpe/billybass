@@ -2,17 +2,8 @@ var express = require('express');
 var router = express.Router();
 var validate = require('express-validation');
 var validation = require('../validation/');
-var Pin = require('../modules/pin.js');
 var flitetts = require('../modules/flitetts.js');
-
-var tailPin = new Pin(19);
-tailPin.setupOutput();
-
-var neckPin = new Pin(21);
-neckPin.setupOutput();
-
-var mouthPin = new Pin(23);
-mouthPin.setupOutput();
+var billymoves = require('../modules/billymoves.js');
 
 router.get('/say', validate(validation.api.say.get), function(req, res, next) {
   flitetts.say(req.query.phrase)
@@ -32,7 +23,12 @@ router.get('/say', validate(validation.api.say.get), function(req, res, next) {
 });
 
 router.get('/neck/:action', validate(validation.api.neck.get), function(req, res, next) {
-  neckPin.write(req.params.action == 'up');
+  if (req.params.action == 'up'){
+    billymoves.neck.up();
+  }
+  else{
+    billymoves.neck.down();
+  }
   res.json({
     success: true,
     result: req.params.action
