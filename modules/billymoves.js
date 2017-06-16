@@ -17,5 +17,21 @@ module.exports = {
         down : function(){
             neckPin.write(false);
         }
+    },
+    tail : {
+        up : function(){
+            tailPin.write(true);
+        },
+        down : function(){
+            tailPin.write(false);
+        }
+    },
+    mouth : {
+        open : function(){
+            tailPin.write(true);
+        },
+        close : function(){
+            tailPin.write(false);
+        }
     }
 }
