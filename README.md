@@ -21,3 +21,22 @@ ____________ ___
 ## Todo
 
 * Button pin
+
+* Remove webservice, make soundtrig instead
+
+var SoundTrig = require('./lib/soundtrig.js');
+
+var soundTrig = new SoundTrig({});
+soundTrig.start();
+
+soundTrig.on('soundStart', function() {
+  console.log('soundStart');
+});
+
+soundTrig.on('soundStop', function() {
+  console.log('soundStop');
+});
+
+soundTrig.on('error', function() {
+  console.log('error');
+});
